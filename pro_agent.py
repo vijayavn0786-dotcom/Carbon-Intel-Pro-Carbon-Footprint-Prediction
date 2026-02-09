@@ -99,7 +99,7 @@ if df is not None:
         with c1:
             st.subheader("Emission by Diet Type")
             fig1, ax1 = plt.subplots(figsize=(8, 5))
-            sns.barplot(x='Diet', y='CarbonEmission', data=df, palette='Greens_d', ax=ax1)
+            sns.barplot(x='Diet', y='CarbonEmission', data=df, hue='Diet', palette='Greens_d', ax=ax1, legend=False)
             st.pyplot(fig1)
         
         with col_imp:
@@ -195,7 +195,7 @@ if df is not None:
         csv = df.to_csv(index=False).encode('utf-8')
         st.download_button(label="📥 DOWNLOAD FULL DATA REPORT (CSV)", data=csv, file_name='carbon_emission_report.csv', mime='text/csv')
         st.markdown("---")
-        st.dataframe(df.head(100), use_container_width=True)
+        st.dataframe(df.head(100), width='stretch')
 
 else:
     st.error("Missing Data: Ensure 'Carbon Emission.csv' is in the project folder.")
